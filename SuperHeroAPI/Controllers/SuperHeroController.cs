@@ -56,6 +56,9 @@ namespace SuperHeroAPI.Controllers
             return Ok(heroes);
         }
 
+        /*
+         * PUT Method usin Web API
+         */
         [HttpPut]
         public async Task<ActionResult<List<SuperHero>>> UpdateHero(SuperHero request)
         {
@@ -71,5 +74,21 @@ namespace SuperHeroAPI.Controllers
 
             return Ok(heroes);
         }
+
+        /*
+         * DELETE Method usin Web API
+        */
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<SuperHero>>> DeleteHero(int id)
+        {
+            var hero = heroes.Find(x => x.Id == id);
+            if (hero == null)
+                return BadRequest("Hero not found!");
+            heroes.Remove(hero);
+            return Ok(heroes);
+        }
+
+
     }
 }
